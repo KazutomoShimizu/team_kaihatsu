@@ -16,7 +16,7 @@ class TeamsController < ApplicationController
   end
 
   def edit
-    redirect_to @team if @team.owner
+    redirect_to @team if current_user != @team.owner
   end
 
   def create
