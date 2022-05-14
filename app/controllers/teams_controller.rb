@@ -52,6 +52,7 @@ class TeamsController < ApplicationController
   def change_owner
     assign = Assign.find(params[:assign_id])
     @team.update(owner_id: assign.user.id)
+    OwnerMailer.owner_mail(@team.owner).deliver
     redirect_to @team, notice: I18n.t('views.messages.change_owner')
   end
 
